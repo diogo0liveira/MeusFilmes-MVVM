@@ -1,0 +1,2 @@
+rootProject.name='Meus Filmes - MVVM'
+include ':app'

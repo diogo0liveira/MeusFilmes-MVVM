@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <style name="Base.AppTheme" parent="Theme.MaterialComponents">
+        <item name="colorPrimaryDark">@color/primary_application_dark</item>
+        <item name="colorPrimary">@color/primary_application</item>
+        <item name="colorSecondary">@color/color_accent</item>
+    </style>
+
+    <style name="AppTheme" parent="Base.AppTheme"/>
+
+    <style name="AppTheme.NoActionBar" parent="Base.AppTheme">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+</resources>
