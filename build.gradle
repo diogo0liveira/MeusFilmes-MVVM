@@ -37,7 +37,7 @@ ext {
     pagingVersion = '2.1.0'
     paletteVersion = '1.0.0'
     cardviewVersion = '1.0.0'
-    materialVersion = '1.1.0-alpha07'
+    materialVersion = '1.1.0-alpha08'
     appcompatVersion = '1.1.0-rc01'
     recyclerviewVersion = '1.1.0-beta01'
     constraintlayoutVersion = '1.1.3'
