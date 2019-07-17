@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import dagger.android.AndroidInjection
 
 @SuppressLint("Registered")
-class BaseActivity : AppCompatActivity()
+open class BaseActivity : AppCompatActivity()
 {
     override fun onCreate(savedInstanceState: Bundle?)
     {
