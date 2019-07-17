@@ -43,6 +43,8 @@ data class Movie(
         @Transient
         var isFavorite: ObservableField<Boolean> = ObservableField(false)) : Parcelable
 {
+        constructor(): this(0, "", null, 0F, "", null, ObservableField(false))
+
         override fun toString(): String
         {
             return title
