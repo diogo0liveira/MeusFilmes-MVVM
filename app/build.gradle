@@ -22,17 +22,15 @@ android {
         buildConfigField 'String', 'THEMOVIEDB_API_KEY', keystoreProperties['THEMOVIEDB_API_KEY']
     }
 
-    android {
-        sourceSets {
-            String sharedTestDir = 'src/sharedTest/java'
+    sourceSets {
+        String sharedTestDir = 'src/sharedTest/java'
 
-            androidTest {
-                java.srcDir sharedTestDir
-            }
+        androidTest {
+            java.srcDir sharedTestDir
+        }
 
-            test {
-                java.srcDir sharedTestDir
-            }
+        test {
+            java.srcDir sharedTestDir
         }
     }
 
@@ -73,6 +71,7 @@ android {
     }
 
     androidExtensions {
+        features = ["parcelize"]
         experimental = true
     }
 
@@ -93,10 +92,13 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
     implementation "androidx.palette:palette:$paletteVersion"
     implementation "androidx.cardview:cardview:$cardviewVersion"
-    implementation "androidx.paging:paging-runtime:$pagingVersion"
     implementation "androidx.recyclerview:recyclerview:$recyclerviewVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
     implementation "androidx.coordinatorlayout:coordinatorlayout:$coordinatorlayoutVersion"
+
+    implementation "androidx.paging:paging-runtime:$pagingVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
 
     implementation "androidx.room:room-runtime:$roomRuntimeVersion"
     implementation "androidx.room:room-rxjava2:$roomRxjava2Version"
@@ -126,7 +128,23 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$daggerAndroidVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerAndroidVersion"
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+//    kaptAndroidTest "com.google.dagger:dagger-compiler:$daggerVersion"
+//    kaptAndroidTest "com.google.dagger:dagger-android-processor:$daggerAndroidVersion"
+
+    testImplementation "org.mockito:mockito-core:$mockitoCoreVersion"
+    testImplementation "androidx.arch.core:core-testing:$coreTesting"
+
+//    androidTestImplementation "androidx.test:rules:$testRulesVersion"
+//    androidTestImplementation "androidx.test:runner:$testRunnerVersion"
+//
+//    androidTestImplementation "androidx.test:core:$testCoreVersion"
+//    androidTestImplementation "androidx.test:core-ktx:$testCoreVersion"
+//    androidTestImplementation "androidx.test.ext:junit:$extJunitVersion"
+//    androidTestImplementation "androidx.test.ext:junit-ktx:$extJunitVersion"
+//    androidTestImplementation "androidx.test.ext:truth:$extTruthVersion"
+//    androidTestImplementation "androidx.arch.core:core-testing:$coreTesting"
+//    androidTestImplementation "org.mockito:mockito-android:$mockitoAndroidVersion"
+//
+//    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
+//    androidTestImplementation "androidx.test.espresso:espresso-intents:$espressoCoreVersion"
 }

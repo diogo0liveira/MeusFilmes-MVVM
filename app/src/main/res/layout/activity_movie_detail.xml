@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="PrivateResource,ContentDescription">
+
+    <data>
+        <variable name="model" type="com.dao.mymovies.features.detail.MovieDetailViewModel"/>
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:statusBarBackground="@android:color/transparent"
+        tools:context=".features.detail.MovieDetailActivity">
+
+        <com.dao.mymovies.util.view.AppBarScrimLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_height"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:toolbarId="@+id/toolbar"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <ImageView
+                    android:id="@+id/cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/vd_empty_movie_120dp"
+                    android:fitsSystemWindows="true"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:requestListener="@{model.setColorHomeIndicator()}"
+                    app:cover="@{model.movie.cover}"/>
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"
+                    android:title="@{model.movie.title}"/>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.dao.mymovies.util.view.AppBarScrimLayout>
+
+        <include layout="@layout/view_content_movie_detail" app:movie="@{model.movie}"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/button_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:tint="@android:color/white"
+            app:rippleColor="@android:color/white"
+            app:layout_anchor="@id/app_bar"
+            app:layout_anchorGravity="bottom|end"
+            app:favorite="@{model.movie.isFavorite}"
+            tools:src="@drawable/vd_not_favorite_24dp"/>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
