@@ -1,11 +1,14 @@
+@file:Suppress("unused")
+
 package com.dao.mymovies.features.search
 
-import com.dao.mymovies.data.MovieRepository
+import androidx.lifecycle.ViewModel
 import com.dao.mymovies.data.repository.FakeRepositoryModule
 import com.dao.mymovies.di.annotations.ActivityScoped
+import com.dao.mymovies.di.viewmodel.ViewModelKey
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
-import io.reactivex.disposables.CompositeDisposable
+import dagger.multibindings.IntoMap
 
 /**
  * Created in 17/08/18 11:16.
@@ -13,12 +16,11 @@ import io.reactivex.disposables.CompositeDisposable
  * @author Diogo Oliveira.
  */
 @Module(includes = [FakeRepositoryModule::class])
-class TestSearchMoviesModule
+abstract class TestSearchMoviesModule
 {
-    @Provides
+    @Binds
+    @IntoMap
     @ActivityScoped
-    fun provideTestSearchMoviesPresenter(repository: MovieRepository, composite: CompositeDisposable): SearchMoviesInteractor.Presenter
-    {
-        return SearchMoviesPresenter(repository, composite)
-    }
+    @ViewModelKey(SearchMoviesViewModel::class)
+    abstract fun bindViewModel(viewModel: SearchMoviesViewModel): ViewModel
 }

@@ -62,7 +62,7 @@ class MovieDetailViewModelTest
         val bundle = mock(Bundle::class.java)
 
         doReturn(movie).`when`(bundle).getParcelable<Movie>(Extras.MOVIE)
-        viewModel.onRestoreInstanceState(bundle, false)
+        viewModel.onInstanceState(bundle, false)
         assertThat(viewModel.movie.value, `is`(movie))
     }
 
@@ -70,7 +70,7 @@ class MovieDetailViewModelTest
     fun `restore instance state empty`()
     {
         val bundle = null
-        viewModel.onRestoreInstanceState(bundle, false)
+        viewModel.onInstanceState(bundle, false)
         assertThat(viewModel.showToast.value, `is`(ToastContent(R.string.movie_detail_not_found, Toast.LENGTH_LONG)))
     }
 
@@ -83,7 +83,7 @@ class MovieDetailViewModelTest
         val bundle = mock(Bundle::class.java)
         doReturn(movie).`when`(bundle).getParcelable<Movie>(Extras.MOVIE)
 
-        viewModel.onRestoreInstanceState(bundle, false)
+        viewModel.onInstanceState(bundle, false)
         viewModel.movieAction()
 
         repository.isFavorite(movie)
@@ -101,7 +101,7 @@ class MovieDetailViewModelTest
         doReturn(movie).`when`(bundle).getParcelable<Movie>(Extras.MOVIE)
         repository.save(movie)
 
-        viewModel.onRestoreInstanceState(bundle, false)
+        viewModel.onInstanceState(bundle, false)
         viewModel.movieAction()
 
         repository.isFavorite(movie)

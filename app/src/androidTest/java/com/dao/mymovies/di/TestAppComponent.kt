@@ -1,6 +1,7 @@
 package com.dao.mymovies.di
 
 import com.dao.mymovies.MyMoviesApplication
+import com.dao.mymovies.di.viewmodel.ViewModelModule
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
@@ -17,6 +18,7 @@ import javax.inject.Singleton
 [
     AndroidSupportInjectionModule::class,
     TestActivityBindingModule::class,
+    ViewModelModule::class,
     AppModule::class
 ])
 interface TestAppComponent : AndroidInjector<MyMoviesApplication>

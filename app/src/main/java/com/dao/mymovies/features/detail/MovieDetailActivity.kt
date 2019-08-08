@@ -19,6 +19,7 @@ import com.dao.mymovies.base.BaseActivity
 import com.dao.mymovies.databinding.ActivityMovieDetailBinding
 import com.dao.mymovies.util.EventObserver
 import com.dao.mymovies.util.annotation.Duration
+import com.dao.mymovies.util.extensions.drawable
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.toast
 import javax.inject.Inject
@@ -42,11 +43,13 @@ class MovieDetailActivity : BaseActivity(), MovieDetailInteractor.View, View.OnC
     {
         super.onCreate(savedInstanceState)
         helper = DataBindingUtil.setContentView(this, R.layout.activity_movie_detail)
+
         helper.lifecycleOwner = this
+        helper.model = viewModel
 
         if(savedInstanceState == null)
         {
-            viewModel.onRestoreInstanceState(this.intent.extras, false)
+            viewModel.onInstanceState(this.intent.extras, false)
         }
 
         initializeView()
@@ -82,7 +85,7 @@ class MovieDetailActivity : BaseActivity(), MovieDetailInteractor.View, View.OnC
     override fun initializeView()
     {
         setSupportActionBar(helper.toolbar)
-        drawableHomeIndicator = getDrawable(R.drawable.vd_arrow_back_24dp)!!
+        drawableHomeIndicator = drawable(R.drawable.vd_arrow_back_24dp)
         DrawableCompat.setTint(drawableHomeIndicator, Color.WHITE)
 
         supportActionBar?.apply {
@@ -92,6 +95,10 @@ class MovieDetailActivity : BaseActivity(), MovieDetailInteractor.View, View.OnC
 
         helper.buttonFavorite.setOnClickListener(this)
         scrimColorHomeIndicatorObserver()
+        showToastObserver()
+
+        /* Força o toolbar a exibir title */
+        helper.executePendingBindings()
     }
 
     override fun changeMovieFavoriteSuccessObserver()

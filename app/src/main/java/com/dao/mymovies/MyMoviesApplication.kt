@@ -11,22 +11,6 @@ import pl.com.salsoft.sqlitestudioremote.SQLiteStudioService
  *
  * @author Diogo Oliveira.
  */
-//class MyMoviesApplication : Application(), HasActivityInjector
-//{
-//    @Inject
-//    lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
-//
-//    override fun onCreate()
-//    {
-//        super.onCreate()
-//        Logger.initialize(BuildConfig.DEBUG, TAG)
-//        DaggerAppComponent.factory().create(this).inject(this)
-//        BuildConfig.DEBUG.let { SQLiteStudioService.instance().start(this) }
-//    }
-//
-//    override fun activityInjector(): AndroidInjector<Activity> = dispatchingActivityInjector
-//}
-
 open class MyMoviesApplication : DaggerApplication()
 {
     lateinit var injector: AndroidInjector<MyMoviesApplication>

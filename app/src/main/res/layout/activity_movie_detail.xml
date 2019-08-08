@@ -54,7 +54,7 @@
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.dao.mymovies.util.view.AppBarScrimLayout>
 
-        <include layout="@layout/view_content_movie_detail" app:movie="@{model.movie}"/>
+        <include layout="@layout/view_content_movie_detail" app:model="@{model}"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/button_favorite"

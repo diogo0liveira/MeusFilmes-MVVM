@@ -9,7 +9,7 @@
     tools:ignore="PrivateResource,ContentDescription">
 
     <data>
-        <variable name="movie" type="com.dao.mymovies.model.Movie"/>
+        <variable name="model" type="com.dao.mymovies.features.detail.MovieDetailViewModel"/>
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -31,7 +31,7 @@
                 android:layout_marginEnd="16dp"
                 android:numStars="5"
                 android:stepSize=".1"
-                app:voteAverage="@{movie.voteAverage}"
+                app:voteAverage="@{model.movie.voteAverage}"
                 style="?android:attr/ratingBarStyleSmall"
                 tools:rating="2.0"/>
 
@@ -44,7 +44,7 @@
                 android:layout_marginEnd="16dp"
                 android:textColor="@android:color/holo_blue_dark"
                 app:text="@{@string/movie_detail_release_date}"
-                app:date="@{movie.releaseDate}"
+                app:date="@{model.movie.releaseDate}"
                 tools:text="02/05/1985"/>
 
             <TextView
@@ -52,7 +52,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                app:asyncText="@{movie.overView}"
+                app:asyncText="@{model.movie.overView}"
                 tools:text="Spider-Man is a fictional superhero appearing in American comic books published by Marvel Comics. The character was created by writer-editor Stan Lee and writer-artist Steve Ditko, and first appeared in the anthology comic book Amazing Fantasy #15 (August 1962) in the Silver Age of Comic Books. The character is"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

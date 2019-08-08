@@ -14,20 +14,6 @@ class ViewModelFactory @Inject constructor(
         private val creators: Map<Class<out ViewModel>,
         @JvmSuppressWildcards Provider<ViewModel>>) : ViewModelProvider.Factory
 {
-//    override fun <T : ViewModel?> create(modelClass: Class<T>): T
-//    {
-//        try
-//        {
-//            val found = creators.entries.find { modelClass.isAssignableFrom(it.key) }
-//            val creator = found?.value ?: throw IllegalArgumentException("unknown model class $modelClass")
-//            @Suppress("UNCHECKED_CAST") return creator.get() as T
-//        }
-//        catch(e: Exception)
-//        {
-//            throw RuntimeException(e)
-//        }
-//    }
-
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T
     {

@@ -30,7 +30,7 @@ class MyMoviesViewModel @Inject constructor(repository: MovieRepository): ViewMo
         return when(order)
         {
             Order.TITLE -> movies.sortedBy { movie -> movie.title }
-            Order.DATE -> movies.sortedBy { movie -> movie.releaseDate }
+            Order.DATE -> movies.sortedByDescending { movie -> movie.releaseDate }
         }
     }
 

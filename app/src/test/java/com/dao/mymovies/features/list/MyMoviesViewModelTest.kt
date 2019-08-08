@@ -87,7 +87,7 @@ class MyMoviesViewModelTest
         val movie1 = MovieFactory.build(1, TITLE_A, releaseDate = date1)
         val movie2 = MovieFactory.build(2, TITLE_B, releaseDate = date2)
 
-        val movies = listOf(movie1, movie2).sortedBy { movie -> movie.releaseDate }
+        val movies = listOf(movie1, movie2).sortedByDescending { movie -> movie.releaseDate }
         repository.save(movie1)
         repository.save(movie2)
 

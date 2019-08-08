@@ -1,7 +1,7 @@
 package com.dao.mymovies.data.repository
 
 import androidx.paging.DataSource
-import com.dao.mymovies.base.mvp.Repository
+import com.dao.mymovies.base.Repository
 import com.dao.mymovies.data.MovieRepository
 import com.dao.mymovies.data.local.MovieLocalDataSource
 import com.dao.mymovies.data.remote.MovieRemoteDataSource

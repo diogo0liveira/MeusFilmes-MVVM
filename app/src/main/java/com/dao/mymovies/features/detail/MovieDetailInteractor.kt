@@ -1,6 +1,6 @@
 package com.dao.mymovies.features.detail
 
-import com.dao.mymovies.base.mvp.IView
+import com.dao.mymovies.base.IView
 
 /**
  * Created in 03/08/18 16:59.

@@ -4,7 +4,6 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.MutableLiveData
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -19,7 +18,6 @@ import com.dao.mymovies.*
 import com.dao.mymovies.di.DaggerTestAppComponent
 import com.dao.mymovies.features.adapter.MyMoviesAdapter
 import com.dao.mymovies.features.detail.MovieDetailActivity
-import com.dao.mymovies.network.NetworkState
 import com.dao.mymovies.util.ToastMatcher
 import dagger.android.AndroidInjector
 import io.reactivex.android.plugins.RxAndroidPlugins
@@ -31,6 +29,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito.verify
+import org.mockito.MockitoAnnotations
 
 /**
  * Created in 10/05/19 14:43.
@@ -54,6 +53,8 @@ class SearchMoviesActivityTest
     @Before
     fun setUp()
     {
+        MockitoAnnotations.initMocks(this)
+
         RepositoryFactory.remote.movies.clear()
         RepositoryFactory.remote.movies = mutableListOf(MovieFactory.build(1))
 
@@ -90,8 +91,6 @@ class SearchMoviesActivityTest
     @Test
     fun onCollectionChanged_empty()
     {
-        RepositoryFactory.remote.movies.clear()
-
         val scenario = activityScenarioRule.scenario
         scenario.moveToState(Lifecycle.State.RESUMED)
         onView(withId(R.id.message_empty)).check(matches(isDisplayed()))
@@ -108,51 +107,6 @@ class SearchMoviesActivityTest
         onView(matcher).perform(pressImeActionButton())
 
         onView(withId(R.id.message_empty)).check(matches(not(isDisplayed())))
-    }
-
-    @Test
-    fun networkStateObserver_running()
-    {
-        RepositoryFactory.remote.movies.clear()
-        val scenario = activityScenarioRule.scenario
-        scenario.moveToState(Lifecycle.State.RESUMED)
-
-        scenario.onActivity { activity ->
-            val liveData = MutableLiveData<NetworkState>().apply { value = NetworkState.RUNNING }
-            activity.networkStateObserver(liveData)
-        }
-
-        onView(withId(R.id.progressBar)).check(matches(isDisplayed()))
-    }
-
-    @Test
-    fun networkStateObserver_success()
-    {
-        val scenario = activityScenarioRule.scenario
-        scenario.moveToState(Lifecycle.State.RESUMED)
-
-        scenario.onActivity { activity ->
-            val liveData = MutableLiveData<NetworkState>().apply { value = NetworkState.SUCCESS }
-            activity.networkStateObserver(liveData)
-        }
-
-        onView(withId(R.id.progressBar)).check(matches(not(isDisplayed())))
-    }
-
-    @Test
-    fun networkStateObserver_failed()
-    {
-        val scenario = activityScenarioRule.scenario
-        scenario.moveToState(Lifecycle.State.RESUMED)
-
-        val block: () -> Unit = mock()
-
-        scenario.onActivity { activity ->
-            val liveData = MutableLiveData<NetworkState>().apply { value = NetworkState.error("", block) }
-            activity.networkStateObserver(liveData)
-        }
-
-        verify(block).invoke()
     }
 
     @Test

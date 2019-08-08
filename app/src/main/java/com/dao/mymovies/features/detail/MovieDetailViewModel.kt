@@ -47,19 +47,19 @@ class MovieDetailViewModel @Inject constructor(
     val changeMovieFavoriteSuccess: LiveData<Event<Unit>> = changeMovieFavoriteObservable
 
     private val movieObservable = MutableLiveData<Movie>()
-    val movie: LiveData<Movie> = movieObservable
+    val movie: MutableLiveData<Movie> = movieObservable
 
 
-    fun onRestoreInstanceState(bundle: Bundle?, savedState: Boolean)
+    fun onInstanceState(bundle: Bundle?, savedState: Boolean)
     {
         if(bundle != null)
         {
-            movieObservable.value = bundle.getParcelable(Extras.MOVIE)!!
+            movie.value = bundle.getParcelable(Extras.MOVIE)
 
-//            if(!savedState)
-//            {
-//                isFavorite { favorite -> movie.value?.isFavorite?.set(favorite) }
-//            }
+            if(!savedState)
+            {
+                isFavorite { favorite -> movie.value?.isFavorite?.set(favorite) }
+            }
         }
         else
         {

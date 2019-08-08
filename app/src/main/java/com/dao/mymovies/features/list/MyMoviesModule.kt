@@ -19,9 +19,6 @@ import dagger.multibindings.IntoMap
 (includes = [RepositoryModule::class])
 abstract class MyMoviesModule
 {
-//    @ContributesAndroidInjector(modules = [ViewModelModule::class])
-//    internal abstract fun statisticsFragment(): MyMoviesActivity
-
     @Binds
     @IntoMap
     @ActivityScoped

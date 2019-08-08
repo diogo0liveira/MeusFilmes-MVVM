@@ -39,6 +39,7 @@ class SearchMoviesViewModelTest
 
     private lateinit var viewModel: SearchMoviesViewModel
     private lateinit var repository: FakeMovieRepository
+    private lateinit var remoteDataSource: FakeMoviesRemoteDataSource
 
     init
     {
@@ -51,7 +52,8 @@ class SearchMoviesViewModelTest
     {
         MockitoAnnotations.initMocks(this)
 
-        repository = FakeMovieRepository(FakeMoviesLocalDataSource(), FakeMoviesRemoteDataSource())
+        remoteDataSource = FakeMoviesRemoteDataSource()
+        repository = FakeMovieRepository(FakeMoviesLocalDataSource(), remoteDataSource)
         viewModel = SearchMoviesViewModel(repository, composite)
     }
 
@@ -78,10 +80,7 @@ class SearchMoviesViewModelTest
                 MovieFactory.build(1, TITLE_A),
                 MovieFactory.build(1, TITLE_B))
 
-        repository.save(movies[0])
-        repository.save(movies[1])
-
-
+        remoteDataSource.movies = movies
         viewModel.searchObserver().observeForever(observer)
 
         viewModel.searchMovies("Title")

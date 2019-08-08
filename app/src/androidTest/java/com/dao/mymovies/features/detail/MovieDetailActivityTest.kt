@@ -1,7 +1,6 @@
 package com.dao.mymovies.features.detail
 
 import android.content.Intent
-import android.widget.Toast
 import androidx.lifecycle.Lifecycle
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -16,7 +15,6 @@ import com.dao.mymovies.MovieFactory
 import com.dao.mymovies.R
 import com.dao.mymovies.util.DateTime
 import com.dao.mymovies.util.RatingBarMatcher
-import com.dao.mymovies.util.ToastMatcher
 import com.dao.mymovies.util.ToolbarMatcher
 import org.hamcrest.core.Is.`is`
 import org.junit.Rule
@@ -74,20 +72,6 @@ class MovieDetailActivityTest
 
         onView(withId(R.id.button_favorite)).perform(click())
         assertThat(movie.isFavorite.get(), `is`(false))
-        scenario.close()
-    }
-
-    @Test
-    fun showToast()
-    {
-        val scenario = activityScenarioRule.scenario
-        scenario.moveToState(Lifecycle.State.RESUMED)
-
-        scenario.onActivity { activity ->
-            activity.showToast(R.string.app_internal_error_client, Toast.LENGTH_LONG)
-        }
-
-        onView(withText(R.string.app_internal_error_client)).inRoot(ToastMatcher()).check(matches(isDisplayed()))
         scenario.close()
     }
 }

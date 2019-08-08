@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.dao.mymovies.di.viewmodel
 
 import androidx.lifecycle.ViewModelProvider

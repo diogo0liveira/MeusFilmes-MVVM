@@ -11,5 +11,4 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 object MediaType
 {
     val NONE: MediaType? = "".toMediaTypeOrNull()
-//    val JSON: MediaType = "application/json; charset=utf-8".toMediaType()
 }

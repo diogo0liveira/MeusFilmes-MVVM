@@ -1,4 +1,4 @@
-package com.dao.mymovies.base.mvp
+package com.dao.mymovies.base
 
 /**
  * Created in 26/03/19 20:49.
